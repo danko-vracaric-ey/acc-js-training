@@ -787,4 +787,535 @@
 // console.log(person[field]) so we can access values
 // }
 
+// _________________________________________________________________________________________________________________________
 
+// Section 6 - Errors and debugging
+
+//70.Debugging with browser developer tools
+
+// var a = 2;
+// var b = 5;
+// var c;
+// var d = 1000;
+
+// for (var i = 0; i<5; i++){
+//     if(i>a && i < b){  
+//      c = 1000;
+//     }
+//     if(i ===3){
+//         d*=2;
+//     }
+// }
+
+// console.log(a)
+// console.log(b)
+// console.log(c)
+// console.log(d)
+
+//You can mark a line, make a breakpoint, pause the script execution, hover over variables to see current value and check in Sources Scope
+
+// 71. Logging Data to the Console
+
+// 72. Handling Errors with try and catch
+
+//If you have a line of code that you don't know the result, like fetching data from the server
+// try{
+//     adadar()
+// } catch(error){
+// console.log(error)
+// }finally{
+// console.log("Finally"
+// )
+// }
+
+// finally will always be executed
+
+// _________________________________________________________________________________________________________________________
+
+// Section 7 - Functions
+
+// 74.Introduction
+//Some advanced topics in this section
+
+//75. Closures
+//  Closures are functions which are defined in e.g. another function. So in a local scope of the outer function so they are aware of their environment.
+// They are useful in cb.
+
+// function generator(input){
+//     var number = input;
+//     return function (){
+//         return number*2;
+//     }
+// }
+
+// var calc = generator(900)
+
+// console.log(calc) it logs the function
+// so since we are assigning function to calc, we can now execute it
+
+// console.log(calc())
+
+//it stores the value 900, and when we call it, it still knows what value of number was when the func was returned, it is aware of it's environment and it stores it
+//it is a powerfull tool and that is why it's often used for cb which have to execute the function because you are able to store the environment
+
+// 76. Immediately Invoked Function Executions
+
+// (function calc(){
+//     console.log("Calc")
+// })()
+// doing it this way we make sure we don't polute the global scope, because we create local scope
+// we can also pass the value into the function (function(x){})(x)
+
+// 77. Built-in methods & propreties
+
+// function message(message){
+//     console.log(message)
+//     console.log(arguments)
+// }
+
+// message("Hi")
+// if I pass more arguments I can access them with arguments, and do something with them during runtime. It's kinda like an array. I can expand functionality of my function.
+
+// message.name access the name of the function
+
+// var msg = message
+// console.log(msg.name)
+// console.log(msg.length) prints how many arguments it expects
+
+// function message(message){
+//     console.log(this.name)
+// }
+// message()
+// prints global object name
+
+
+// _________________________________________________________________________________________________________________________
+
+// Section 8 - Built in Objects and Functions
+
+// 79. Intro
+
+// 80. Timers and Intervals
+
+// Method on the window object
+
+// setTimeout(function(){
+// console.log("Finished")
+
+// }, 2000)
+
+// prima funkciju i ms posle koliko ce se izvrsiti cb funk
+//setInterval the same only loops again and again
+
+// var interval = setInterval(function(){
+//     console.log("Stop me")
+// }, 2000)
+
+// setTimeout(function(){
+//     clearInterval(interval)
+// }, 8000)
+
+
+// clearInterval(interval) stops the interval
+
+// 81. Transforming formats and values, parsers
+
+// var a = "5";
+// parseInt("5")
+// it will try best to transform string into a number, it will stop at first non number
+// second parameter can specify the radix, the system decimal, or hexa etc.
+
+// a.toString()
+// toFixed() just rounds, and we pass number of decimal places, default is without decimal places
+
+// 82. String functions
+
+// var string = "Any text"
+
+// we can use .length an string[0] like an array
+//charAt let us do the same
+//we can add concat and combine two strings
+//toUpperCase()
+//split(" "), returns an array of elements 
+//.trim() removes excess whitespace at the end, useful when using in a form, when user fills out a form
+
+// 83. The Math Object
+
+// var pi = Math.PI
+// var e = Math.E
+
+//built in values
+// or functions
+// .abs -> gives absolute value
+//.round() ->
+//.ceil() -> rounds up to the next full integer
+//.floor() -> rounds down
+//Math.log(e)
+//.max | .min
+//.random() floating random number between 0 and 1
+// rnd = Math.floor(Math.random()*100+1)
+
+// Math.random()*100 we get 0 - 99.999, but I want from 1 to 100 so I will add +1 and floor it
+
+// 84. Date object
+
+// var today = new Date(2016, 5, 26)
+// console.log(today.toString()) however we can pass arguments to the constructor, the YEAR, MONTH, DAY
+// months start at 0, like in array
+//if I add more days it automatically adds it
+// var today = new Date("2020/05/03") here it don't starts with 0, month
+// Date.parse("2016/05/05") that is number of ms since the 1st January of 1970, start of unix time
+//today.getDate() gives us the day in the month
+// today.getDay() gives us day of the week, Monday is 1
+
+
+// 85. Regular expressions 
+// patterns used to match certain combinations in strings
+
+// var string = "abc"
+// var pattern = /ab/;
+// console.log(pattern)
+
+// console.log(pattern.test(string))
+// console.log(string.match(pattern))
+// validate email regex
+
+// function validateEmail(email){
+//         var re = /[]\0103=/
+//         return re.test(email)
+// }
+//the use for regexp is to validate user input, e.g. that user entered valid email
+
+// _________________________________________________________________________________________________________________________
+
+// Section 9 - Working with Window and DOM
+
+// 87. Intro
+
+// Introducing DOM, HTML code and interaction between js and html code
+// changing html code during runtime etc
+
+//Window object our tab that is open or complete window, which holds browser bar and page we are seeing
+// location bar, and we have access to it on the Window object
+// Window object stores for us the Location Object
+// Holds the rendered HTML code, the browser created Document Object Model from our HTML code
+
+// 88. The Window Object
+
+// Overall holding container, global object in the browser is Window object
+// You can log width of the Window and scroll bar, window.innerWidth, we can use this without window object since we are on the global scope, console.log(innerWidth)
+//outerWidth, now we get the full size, and any possible border we might have, 
+//we also have innerHeight, just webpage itself and outerHeight
+//it holds also the complete DOM, setTimeout and setInterval are also methods available on the window object
+// another useful proprety is localStorage, built in storage which will save certain values in our browser as long the app is running
+//setItem to write in local storage
+// localStorage.setItem("key1", 1000) var key1 = localStorage.getItem("key1")
+// sessionStorage works in the same way, diff is that sessionS will be deleted when user closes tab or window
+// .location proprety, location object holds information of the location we are currently at
+// dom - window.document
+// window.open ("https://www.google.com/"), tries to open a pop up 
+// other methods of navigating are in the location lecture
+//so global scope in browser refers to window object, so we don't have to write window.
+
+// 89. The Location Object
+
+// console.log(location.reload(true))
+// it holds host, hostname, reload method, replace method -> location.replace("https://www.google.com/") or 
+// location.pathname is everything after the domain
+
+// 90. The Document Object
+
+// console.log(document.body.children[0].textContent)
+// has .title .body .URL .body
+// .body.children -> logs HTML collection
+// .body.children[0].textContent -> gives text content of the HTML element
+
+//so each element is transformed into an own object, with all the propreties above and other depending on type of HTML element
+// so we can interact with it
+// document.body.children[0].textContent = "Hallow"
+
+// console.dir(document.body.children[0])
+
+// document.body.children[0].style.backgroundColor = "red"
+
+// but we don't want to select nested children through document.body.children[0].children[0].style...
+
+//91. Traversing the DOM
+
+// console.dir(document.body.firstChild)
+// console.log(document.body.firstChild) we got the whitespace 
+// to select the first child, use document.body.firstElementChild
+// to select last child, use document.body.lastElementchild
+
+//document.body.firstElementChild.firstElementChild.nextElementSibiling
+//document.body.firstElementChild.firstElementChild.parentElement
+
+//that's how you mode through the dom but it's not convinient
+ 
+// 92. Selecting Elements
+
+//Quicker way is to use methods that document offers, 
+//getElementByTagName("h1") 
+//
+
+// var h1 = document.getElementsByTagName("h1")
+// console.log(document.getElementsByTagName("h1"))
+// console.dir(document)
+// h1[0].style.backgroundColor = "blue"
+
+//returns array like LIVE HTML Collection that of found elements in the order they appear in the tree
+
+// getElementsByClassName("someClass")
+// getElementById("siple")
+
+// 93. Selecting elements with Query Selector
+
+// querrySelector allows me to select by Id, className, tag name  because it uses css selectors,
+// .className
+// #idName
+
+// var h1 = document.querySelector("h1")
+// var h1 = document.querySelector(".somesimplename") this will only give me the first element matching this query
+// document.querySelectorAll(".classss") - All elements with that className
+// document.querySelector("#easy") - Id
+
+// var h1 = document.querySelector("h1")
+// console.dir(h1.className = "classs")
+
+// var div = document.querySelector("h1 div")
+
+// div.textContent = "HELLOW"
+
+// console.dir(div)
+
+
+// 93. Creating and Inserting Elements
+ 
+// var div = document.querySelector("h1 div")
+// var h1 = document.querySelector("h1")
+
+
+// var p = document.createElement("p")
+// p.textContent = "A new paragraph!"
+// p.style.fontSize = "17px"
+
+
+// div.appendChild(p) parent.appendChild(child); adds at the end of the child elements  
+
+// insert before some element
+// h1.insertBefore(p, div) parent.insertBefore(p, ispredCega)
+
+// 96. Deleting elements
+
+// var div = document.querySelector("h1 div")
+// var h1 = document.querySelector("h1")
+// div.parentElement.removeChild(div)
+// h1.removeChild(div)
+// div.remove()
+
+// 97. Elements and Nodes
+
+//Dom consits of nodes
+// some nodes are elements, so using div.parentNode.removeChild(div), I can use div.parentElement.removeChild(div) since this node is element node
+
+//98. DOM interaction summary
+
+//99. Dialogs
+
+//dialogs are pop us that users can see
+
+// alert("This is an Alert!")
+// confirm("Hellow") returns true false
+// console.log(prompt("Your Name"))returns typed in text
+
+// 100. DOM Propreties & Methods
+
+
+// _________________________________________________________________________________________________________________________
+
+// Section 10 - Events
+
+// 102. Introduction
+
+//able to react to user interaction and listen to events
+
+// 103. The Event Object
+
+ // General event js offers and we have several specific events that kinda implement this top lvl event, so they share some method, propreties they share
+//General event object, event interface
+
+ //104. Event Handlers, listening to Events
+
+ //We have the load event, so I can add and event handler on this event with onload proprety on the window object
+ //inside I pass anonymous function which should handle this loading event whenever it occurs
+
+//  window.onload = function(){
+//     console.log("window loaded")
+//  }
+
+ //this onload handler is being registered and when the window loads this code is run
+
+//  var btn = document.querySelector("button")
+
+//  btn.onclick = function (){
+//     console.log("I have been clicked Mr.!")
+//  }
+
+
+ //log element and see event handlers available, or google it
+// you can add these event handlers on any html element, even if it isn't clickable
+
+// disadvantage is if I want to add another function that I want to execute after listening ot an event, it will overwrite the first one and we will see only the second one
+
+// 105. Event Listeners
+
+// Event listeners
+
+// var btn = document.querySelector("button")
+// btn.addEventListener("click", listener1) 
+// btn.addEventListener("click", listener2)
+
+// setTimeout(function(){
+
+// btn.removeEventListener("click", listener1) need to specify
+
+// }, 2000)
+
+// function listener1(){
+//     console.log("1")
+// }
+
+// function listener2(){
+//     console.log("2")
+// }
+
+// this way we can add two listeners
+
+// 106. Event Behaviours
+
+// var outer = document.querySelector(".outer")
+// var inner = document.querySelector(".inner")
+
+// inner.addEventListener("click", innerListener, false)
+// outer.addEventListener("click", outerListener, true)
+
+// function innerListener(event){
+    // console.log(event.bubbles)
+    // event.stopPropagation()
+//     console.log("Clicked inner!")
+// }
+// js passes this event object, argument. Automatically to our listeners. This object will depend on type of the event, mouse click events etc..
+// function outerListener(event){
+//     console.log("Clicked outer!")
+// }
+
+//if I click on inner, both fire. Because events in js propagate up
+// to stop this behaviour, I need to go to my inner element, access the event object and it's method stopPropagation()
+//event.bubbles to check if the event has the goal of bubbling up; returns true/false and that's why we have to stop it from bubbling and triggering outher events
+
+// 107. Event Object Propreties
+
+//event.target; gives us the object on which the event happened
+//so we can event.target.style.backgroundColor("red") or exctract the position where the event happened event.clientX
+//event.target.value
+
+// 108. Changing Propagation Order
+
+// What if I want to check if outer should trigger the event
+// I can do this by adding another parameter to event listeners 
+// so true/false as the third parameter in event listener sets weather the event will be set in capture or bubble phase
+//so I can set the event for the capture phase
+//if false, it's set for bubbling phase
+
+
+//_________________________________________________________________________________________________________________________
+
+// Section 11 - JavaScript and Http Requests
+
+// 110. Introduction
+
+// AJAX or XMLHttpRequest, it allows us to reach or posts data from inside JS, and not only XML files
+// We will often use library or framework for it, but it's important to learn the baiscs
+
+// 111. Setup and Sending a GET Request
+
+// var req = new XMLHttpRequest()
+
+// var url = "https://jsonplaceholder.typicode.com/posts"
+
+// var method = "GET"
+
+// var fetchData = function(){
+
+//     req.open(method, url)
+
+//     req.onreadystatechange = function (){
+//         if (req.readyState === XMLHttpRequest.DONE && req.status === 200){
+//             console.log(JSON.parse(req.responseText))
+//         }else if(req.readyState === XMLHttpRequest.DONE && req.status !== 200){
+//             console.log("Error!")
+//         }
+//     }
+//     req.send()
+// }
+
+// once you get the response you need to parse the JSON obj  JSON.parse()
+
+// onload = fetchData
+
+
+// 112. POST Request
+
+// var req = new XMLHttpRequest()
+
+// var method = "POST"
+
+// var data = "title=Post%20Title&body=Body"
+
+// var postData = function (){
+
+//     req.open(method, "https://jsonplaceholder.typicode.com/posts")
+//     req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+//     req.onreadystatechange = function (){
+//             if(req.readyState === XMLHttpRequest.DONE && req.status === 201){
+//                 console.log(JSON.parse(req.responseText))
+//             }else if(req.readyState === XMLHttpRequest.DONE && req.status !== 201){
+//                 console.log("Error!")
+//             }
+//     }
+//     req.send()
+// }
+
+// onload = postData
+
+// _________________________________________________________________________________________________________________________
+
+//  Section 12 - Libraries, Frameworks & Modules
+
+// 114. Intorduction
+
+ 
+// 115. Libraries & jQuery
+
+//jQuery is js with lot of helpers
+// helps with AJAX, makes it easy to use with, manipulation, traversing the DOM
+
+//116. Frameworks
+
+//Sometimes you don't want a library, but a whole SPA
+//creates entire environment for developing app
+
+// 117. Writing modular code
+
+//spliting your app into several files, modules, just import them
+//there are packages, tools which will allow us to use modules during development and during run they will 
+// manualy figure out dependencies we set up during development and import files on the correct order or bundle them still keeping correct order
+//webpack; systemjs - like a script that will import files in the correct order
+//jspm, 
+
+
+// Section 13 - Course project
+
+// have a script file where I initialize certain things, init.js
+//this file should basically loads some elements from the code, will get all the elements I need
+// in weather-data.js I will set up my constructor function for weather data
